@@ -47,29 +47,9 @@ export default {};
 <style lang="less" scoped>
 nav {
   background-color: #fff;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 5%);
 }
-#searchInput {
-  width: 422px;
-  height: 38px;
-  font-size: 14px;
-  border-radius: 3px 0 0 3px;
-  border: 1px solid #ccc;
-  vertical-align: middle;
-  padding-left: 10px;
-  outline: none;
-}
-#searchBtn {
-  display: inline-block;
-  height: 38px;
-  width: 39px;
-  background: url(http://static3.biyao.com/pc/common/img/master/search.png?v=biyao_2e92562)
-    center center no-repeat;
-  border: 1px solid #ccc;
-  vertical-align: middle;
-  border-radius: 0 3px 3px 0;
-  border-left: none;
-  cursor: pointer;
-}
+
 .nav-main {
   width: 1080px;
   margin: 0 auto;
@@ -87,6 +67,31 @@ nav {
     }
     .nav-search {
       margin-top: 30px;
+
+
+      #searchInput {
+        width: 422px;
+        height: 38px;
+        font-size: 14px;
+        border-radius: 3px 0 0 3px;
+        border: 1px solid #ccc;
+        vertical-align: middle;
+        padding-left: 10px;
+        outline: none;
+      }
+      #searchBtn {
+        display: inline-block;
+        height: 38px;
+        width: 39px;
+        background: url(http://static3.biyao.com/pc/common/img/master/search.png?v=biyao_2e92562)
+          center center no-repeat;
+        border: 1px solid #ccc;
+        vertical-align: middle;
+        border-radius: 0 3px 3px 0;
+        border-left: none;
+        cursor: pointer;
+      }
+
       ul {
         list-style: none;
         display: flex;
@@ -101,14 +106,19 @@ nav {
       }
     }
   }
+
   .nav-tab {
     list-style: none;
     display: flex;
     height: 40px;
     align-items: center;
+
+
     .border-l {
       border-left: 1px solid #ccc;
     }
+
+    
     li {
       height: 16px;
       padding-right: 45px;

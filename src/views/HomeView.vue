@@ -3,9 +3,45 @@
     <Header></Header>
 
     <div class="box">
-      <div class="banner"></div>
+      <div class="banner">
+        <div class="banner-slider">
+          <img src="@/assets/banner2.png" alt="" />
+        </div>
+
+        <ul class="nav-list">
+          <li>
+            <router-link to="">咖啡</router-link>
+            <span>/</span>
+            <router-link to="">饮食</router-link>
+            <span>/</span>
+            <router-link to="">正餐</router-link>
+          </li>
+          <li>
+            <router-link to="">咖啡</router-link>
+            <span>/</span>
+            <router-link to="">饮食</router-link>
+            <span>/</span>
+            <router-link to="">正餐</router-link>
+          </li>
+          <li>
+            <router-link to="">咖啡</router-link>
+            <span>/</span>
+            <router-link to="">饮食</router-link>
+            <span>/</span>
+            <router-link to="">正餐</router-link>
+          </li>
+        </ul>
+      </div>
+
       <div class="platfor">
-        <div class="item"></div>
+        <dl v-for="item in platfor" :key="item.icon">
+          <dt
+            :style="{
+              backgroundImage: `url(${item.icon})`,
+            }"
+          ></dt>
+          <dd>{{ item.text }}</dd>
+        </dl>
       </div>
 
       <div class="title">
@@ -33,23 +69,23 @@ export default {
 
     let platfor = ref([
       {
-        icon: "@/assets/ptzc_character.png",
+        icon: require("@/assets/ptzc_character.png"),
         text: "大牌品质",
       },
       {
-        icon: "@/assets/ptzc_price.png",
+        icon: require("@/assets/ptzc_price.png"),
         text: "工厂价格",
       },
       {
-        icon: "@/assets/ptzc_payment.png",
+        icon: require("@/assets/ptzc_payment.png"),
         text: "分期支付",
       },
       {
-        icon: "@/assets/ptzc_sf.png",
+        icon: require("@/assets/ptzc_sf.png"),
         text: "顺丰包邮",
       },
       {
-        icon: "@/assets/ptzc_refund.png",
+        icon: require("@/assets/ptzc_refund.png"),
         text: "无忧退款",
       },
     ]);
@@ -68,7 +104,7 @@ export default {
 
     return {
       list,
-      platfor
+      platfor,
     };
   },
 };
@@ -79,6 +115,7 @@ export default {
   width: 1080px;
   margin: 0 auto;
 }
+
 .title {
   margin-top: 20px;
 
@@ -101,8 +138,52 @@ export default {
   justify-content: space-between;
 }
 
-
-.platfor{
+.platfor {
   height: 40px;
+  display: flex;
+  padding: 0 30px;
+  justify-content: space-between;
+
+  dl {
+    display: flex;
+    dt {
+      width: 32px;
+      height: 40px;
+      background-size: 24px 24px;
+      background-position: center left;
+      background-repeat: no-repeat;
+    }
+    dd {
+      line-height: 40px;
+      font-size: 14px;
+      color: #9687a4;
+    }
+  }
+}
+
+.banner {
+  height: 360px;
+  position: relative;
+  .banner-slider {
+    font-size: 0;
+    img {
+      width: 100%;
+    }
+  }
+
+  .nav-list {
+    background-color: #554d5d;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 360px;
+    width: 200px;
+    color: #fff;
+    li{
+      height: 34px;
+      padding-left: 30px;
+      font-size: 14px;
+    }
+  }
 }
 </style>
