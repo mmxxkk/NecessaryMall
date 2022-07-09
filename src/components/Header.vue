@@ -31,7 +31,12 @@
         <li><router-link to="">首页</router-link></li>
         <li><router-link to="">每日上新</router-link></li>
         <li class="border-l"></li>
-        <li><router-link to="">了解必要</router-link></li>
+        <li class="hover_text">
+          <router-link to=""
+            >了解必要
+            <div class="hover_code"></div>
+          </router-link>
+        </li>
         <li><router-link to="">购物车</router-link></li>
         <li class="border-l"></li>
         <li><router-link to="">登录</router-link></li>
@@ -67,7 +72,6 @@ nav {
     }
     .nav-search {
       margin-top: 30px;
-
 
       #searchInput {
         width: 422px;
@@ -113,12 +117,10 @@ nav {
     height: 40px;
     align-items: center;
 
-
     .border-l {
       border-left: 1px solid #ccc;
     }
 
-    
     li {
       height: 16px;
       padding-right: 45px;
@@ -127,6 +129,25 @@ nav {
       a {
         color: #333;
         text-decoration: none;
+      }
+    }
+    .hover_text a {
+      position: relative;
+      .hover_code {
+        position: absolute;
+        z-index: 10;
+        left: 50%;
+        top: 31.5px;
+        transform: translateX(-50%);
+        width: 220px;
+        height: 260px;
+        background-color: #fff;
+        box-shadow: 0 0 5px 1px #ccc;
+      }
+    }
+    .hover_text:hover {
+      a {
+        color: #713ab3;
       }
     }
   }

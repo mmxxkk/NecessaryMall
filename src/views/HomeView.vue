@@ -17,11 +17,11 @@
             <router-link to="">正餐</router-link>
           </li>
           <li>
-            <router-link to="">咖啡</router-link>
+            <router-link to="">眼睛</router-link>
             <span>/</span>
-            <router-link to="">饮食</router-link>
+            <router-link to="">内衣服饰</router-link>
             <span>/</span>
-            <router-link to="">正餐</router-link>
+            <router-link to="">运动</router-link>
           </li>
           <li>
             <router-link to="">咖啡</router-link>
@@ -29,6 +29,41 @@
             <router-link to="">饮食</router-link>
             <span>/</span>
             <router-link to="">正餐</router-link>
+          </li>
+          <li>
+            <router-link to="">眼睛</router-link>
+            <span>/</span>
+            <router-link to="">内衣服饰</router-link>
+            <span>/</span>
+            <router-link to="">运动</router-link>
+          </li>
+          <li>
+            <router-link to="">咖啡</router-link>
+            <span>/</span>
+            <router-link to="">饮食</router-link>
+            <span>/</span>
+            <router-link to="">正餐</router-link>
+          </li>
+          <li>
+            <router-link to="">眼睛</router-link>
+            <span>/</span>
+            <router-link to="">内衣服饰</router-link>
+            <span>/</span>
+            <router-link to="">运动</router-link>
+          </li>
+          <li>
+            <router-link to="">咖啡</router-link>
+            <span>/</span>
+            <router-link to="">饮食</router-link>
+            <span>/</span>
+            <router-link to="">正餐</router-link>
+          </li>
+          <li>
+            <router-link to="">眼睛</router-link>
+            <span>/</span>
+            <router-link to="">内衣服饰</router-link>
+            <span>/</span>
+            <router-link to="">运动</router-link>
           </li>
         </ul>
       </div>
@@ -95,7 +130,7 @@ export default {
         method: "get",
         url: "/api/hotList?page=1",
       }).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         list.value = res.data;
       });
     };
@@ -143,6 +178,7 @@ export default {
   display: flex;
   padding: 0 30px;
   justify-content: space-between;
+  background-color: #fff;
 
   dl {
     display: flex;
@@ -162,6 +198,7 @@ export default {
 }
 
 .banner {
+  margin-top: 10px;
   height: 360px;
   position: relative;
   .banner-slider {
@@ -179,10 +216,22 @@ export default {
     height: 360px;
     width: 200px;
     color: #fff;
-    li{
+    padding: 10px 0;
+    li {
       height: 34px;
+      line-height: 34px;
       padding-left: 30px;
       font-size: 14px;
+      a {
+        color: #fff;
+        font-size: 14px;
+      }
+      span {
+        display: inline-block;
+        color: #fff;
+        font-size: 14px;
+        margin: 0 5px;
+      }
     }
   }
 }
