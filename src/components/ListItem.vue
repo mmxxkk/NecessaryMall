@@ -1,21 +1,29 @@
 <template>
-  <div class="item">
+  <div class="item" @click="jump(item.Id)">
     <img class="imageUrl" :src="item.imageUrl" alt="" />
 
     <div class="dd">
       <div class="priceBox">
-        <span class="yen">&yen;</span>
-        <span class="price">{{ item.priceStr }}</span>
-        <span
-          v-for="(it, i) in JSON.parse(item.labels)"
-          :key="i"
-          :style="{
-            color: it.textColor,
-            background: it.color,
-            border: `1px solid ` + it.roundColor,
-          }"
-          >{{ it.content }}</span
-        >
+        <div class="price">
+          <span style="color: #f7a701; font-size: 12px; padding-left: 2px"
+            >&yen;
+            <span style="font-size: 18px">{{ item.priceStr }}</span>
+          </span>
+        </div>
+
+        <div class="mack">
+          <span
+            v-for="(it, i) in JSON.parse(item.labels)"
+            :key="i"
+            :style="{
+              color: it.textColor,
+              background: it.color,
+              border: `1px solid ` + it.roundColor,
+            }"
+          >
+            {{ it.content }}
+          </span>
+        </div>
       </div>
       <div class="supplier">{{ item.salePoint }}</div>
       <div class="content">{{ item.title }}</div>
@@ -24,10 +32,25 @@
 </template>
 
 <script>
+import { useRoute, useRouter } from "vue-router";
 export default {
   props: ["item"],
   setup(props) {
-    // console.log(JSON.parse(props.item.labels));
+    let router = useRouter();
+    // console.log(props.item);
+
+    function jump(goodId) {
+      router.push({
+        name: "detail",
+        query: {
+          goodId
+        },
+      });
+    }
+
+    return {
+      jump,
+    };
   },
 };
 </script>
@@ -48,22 +71,19 @@ export default {
       display: flex;
       align-items: center;
       margin-top: 10px;
-      font-size: 12px;
-      span {
-        display: inline-block;
-        margin-left: 5px;
-        padding: 0 2px;
-        border-radius: 2px;
-      }
+
       .price {
-        font-size: 16px;
-        color: #f7a701;
-        margin: 0;
+        margin-right: 12px;
       }
-      .yen {
-        // font-size: 10px;
-        color: #f7a701;
-        margin: 0;
+
+      .mack {
+        span {
+          font-size: 12px;
+          display: inline-block;
+          margin-left: 5px;
+          padding: 0 2px;
+          border-radius: 2px;
+        }
       }
     }
     .supplier {

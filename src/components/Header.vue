@@ -11,42 +11,110 @@
               id="searchInput"
               type="text"
               placeholder="请输入要搜索的商品"
+              v-model="word"
+              @keydown.enter="serch"
             />
-            <span id="searchBtn"></span>
+            <span id="searchBtn" @click="serch"></span>
           </div>
           <ul>
-            <li>行李箱</li>
-            <li>男士内裤</li>
-            <li>女士内裤</li>
-            <li>电动牙刷</li>
-            <li>伞</li>
-            <li>精华枕头</li>
-            <li>洗面奶</li>
-            <li>袜子男夏季</li>
+            <li v-for="item in hotList" :key="item" @click="onClick(item)">
+              {{ item }}
+            </li>
           </ul>
         </div>
       </div>
 
       <ul class="nav-tab">
-        <li><router-link to="">首页</router-link></li>
-        <li><router-link to="">每日上新</router-link></li>
+        <li><router-link to="/">首页</router-link></li>
+        <li><router-link to="/dailynew">每日上新</router-link></li>
         <li class="border-l"></li>
         <li class="hover_text">
-          <router-link to=""
+          <span
             >了解必要
-            <div class="hover_code"></div>
-          </router-link>
+            <div class="hover_code">
+              <i></i>
+              <img src="@/assets/public_code.png" alt="" />
+              <p>关注必要微信公众号</p>
+              <p>了解你想了解的一切</p>
+              <p>小必姐在此发福利哦</p>
+            </div>
+          </span>
         </li>
-        <li><router-link to="">购物车</router-link></li>
-        <li class="border-l"></li>
-        <li><router-link to="">登录</router-link></li>
+        <li><router-link to="/shopCar">购物车</router-link></li>
+
+        <template v-if="!$store.state.token">
+          <li class="border-l"></li>
+          <li><router-link to="/login">登录</router-link></li>
+        </template>
       </ul>
+
+      <div
+        class="flex"
+        :style="{
+          top: st > 145 ? 0 : -65 + 'px',
+        }"
+      ></div>
     </div>
   </nav>
 </template>
 
 <script>
-export default {};
+import { ref, onBeforeUnmount } from "vue";
+import { useStore } from "vuex";
+import { useRoute, useRouter } from "vue-router";
+export default {
+  setup() {
+    let word = ref("");
+    let router = useRouter();
+    // const store = useStore();
+    // console.log(store.state.token);
+    let st = ref("");
+    let f = () => {
+      st.value = document.documentElement.scrollTop;
+    };
+    window.onscroll = f;
+
+    onBeforeUnmount(() => {
+      window.onscroll = null;
+    });
+
+    let hotList = ref([
+      "行李箱",
+      "男士内裤",
+      "女士内裤",
+      "电动牙刷",
+      "伞",
+      "精华枕头",
+      "洗面奶",
+      "袜子男夏季",
+    ]);
+
+    function serch() {
+      router.push({
+        name: "search",
+        query: {
+          word: word.value,
+        },
+      });
+    }
+    function onClick(val) {
+      router.push({
+        name: "search",
+        query: {
+          word: val,
+        },
+      });
+    }
+
+    return {
+      word,
+      serch,
+      hotList,
+      onClick,
+      st,
+    };
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -131,8 +199,10 @@ nav {
         text-decoration: none;
       }
     }
-    .hover_text a {
+
+    .hover_text span {
       position: relative;
+      //
       .hover_code {
         position: absolute;
         z-index: 10;
@@ -140,16 +210,56 @@ nav {
         top: 31.5px;
         transform: translateX(-50%);
         width: 220px;
-        height: 260px;
         background-color: #fff;
-        box-shadow: 0 0 5px 1px #ccc;
+        box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
+        padding: 30px 0 20px;
+        display: none;
+        img {
+          display: block;
+          width: 133px;
+          margin: 0 auto 15px;
+        }
+        p {
+          color: #333;
+          text-align: center;
+        }
+      }
+
+      i {
+        display: block;
+        border: 10px solid transparent;
+        border-bottom-color: #fff;
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
       }
     }
-    .hover_text:hover {
+
+    li:hover {
       a {
-        color: #713ab3;
+        color: #6c36ab;
+      }
+      span {
+        color: #6c36ab;
       }
     }
+
+    .hover_text:hover {
+      .hover_code {
+        display: block;
+      }
+    }
+  }
+
+  .flex {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: red;
+    top: -65px;
+    z-index: 100;
   }
 }
 </style>
